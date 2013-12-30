@@ -38,7 +38,7 @@ class Iterator extends ArrayIterator
      *
      * @var string
      */
-    private $_prefix;
+    private $prefix;
 
     /**
      * Constructor
@@ -47,7 +47,7 @@ class Iterator extends ArrayIterator
      */
     public function __construct($path, $fa_css_prefix = 'fa')
     {
-        $this->_prefix = $fa_css_prefix;
+        $this->prefix = $fa_css_prefix;
 
         $css = file_get_contents($path);
 
@@ -57,17 +57,17 @@ class Iterator extends ArrayIterator
 
         foreach ($matches as $match) {
             $icon = new Icon($this, $match[1], $match[2]);
-            $this->_addIcon($icon);
+            $this->addIcon($icon);
         }
     }
 
-    private function _addIcon(Icon $icon)
+    private function addIcon(Icon $icon)
     {
         $this->append($icon);
     }
 
     public function getPrefix()
     {
-        return (string) $this->_prefix;
+        return (string) $this->prefix;
     }
 }

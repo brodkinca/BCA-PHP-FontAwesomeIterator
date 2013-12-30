@@ -36,14 +36,14 @@ class Icon
      *
      * @var array
      */
-    private $_data = array();
+    private $data = array();
 
     /**
      * Iterator
      *
      * @var Iterator
      */
-    private $_iterator;
+    private $iterator;
 
     /**
      * Constructor
@@ -53,26 +53,26 @@ class Icon
      */
     public function __construct(Iterator $iterator, $class, $unicode)
     {
-        $this->_iterator = $iterator;
+        $this->iterator = $iterator;
 
         // Set Basic Data
-        $this->_data['class'] = $class;
-        $this->_data['unicode'] = $unicode;
+        $this->data['class'] = $class;
+        $this->data['unicode'] = $unicode;
     }
 
     public function __get($key)
     {
         if (strtolower($key) === 'name') {
-            return $this->_getName($this->__get('class'));
+            return $this->getName($this->__get('class'));
         }
 
-        return @$this->_data[$key];
+        return @$this->data[$key];
     }
 
-    private function _getName($class)
+    private function getName($class)
     {
         // Remove Prefix
-        $name = substr($class, strlen($this->_iterator->getPrefix()) + 1);
+        $name = substr($class, strlen($this->iterator->getPrefix()) + 1);
 
         // Convert Hyphens to Spaces
         $name = str_replace('-', ' ', $name);
